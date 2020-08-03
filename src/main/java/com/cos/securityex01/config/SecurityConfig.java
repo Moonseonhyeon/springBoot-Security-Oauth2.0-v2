@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.cos.securityex01.config.oauth.PrincipalOauth2UserService;
+
 @Configuration //Ioc 빈(bean)을 등록 - 인스턴스
 @EnableWebSecurity //시큐리티 필터 체인안에 항목들을 관리 시작
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true) //특정 주소 접근시 권한 및 인증을 미리 체크
@@ -30,13 +32,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') ") 
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')") 
 		.anyRequest().permitAll()
-		.and()
+		//이부분은 내가 만든 로그인 페이지
+		.and()		
 			.formLogin()
 			.loginPage("/login")
 			.loginProcessingUrl("/loginProc") //요청을 시큐리티가 낚아채서 Authentication Manager로 타게 하는 설정이다.
 			.defaultSuccessUrl("/") // 여기로 시큐리티가 리다이렉션으로 준다.
-			// .configure(web); // 정적인 파일은 ignore
-			
+			// .configure(); // 정적인 파일은 ignore 알아서 공부해보자.
+			//이 부분은 구글 로그인 페이지  // 어떤 인증과 권한이 있어야하지
+		.and()		//구글로그인 누르면 얘가 낚아챔.
+			.oauth2Login()
+			.loginPage("/login")
+			.userInfoEndpoint()
+			.userService(new PrincipalOauth2UserService());		
+		
 			;
 		
 		

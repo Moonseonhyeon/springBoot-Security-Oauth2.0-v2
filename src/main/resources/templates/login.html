@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인페이지</title>
+</head>
+<body>
+<!-- 시큐리티는 x-www-form-url-encoded 타입만 인식 //login만 예외로 ajax통신하지 말기!! 응답받을 때 꼬인다.-->
+<h1>로그인 페이지</h1>
+<form action="/loginProc" method="post">
+
+<h3>username : </h3>
+<input type="text" name="username" placeholder="username"/>
+<br />
+<h3>password : </h3>
+<input type="password" name="password" placeholder="password"/>
+<br />
+<br />
+<button>로그인</button>
+</form>
+<br />
+
+	<h1>Social Login</h1>
+	<br />
+	<!-- javascript:; 는 클릭해도 반응을 없게 하는 키워드 -->
+	<a href="/oauth2/authorization/google" >
+	<!-- 이 주소가 구글이 규칙으로 정해놓은 부분이라서 마지막/뒤에 provider을 수정할 수 있다. -->
+	 <img
+		src="https://pngimage.net/wp-content/uploads/2018/06/google-login-button-png-1.png"
+		alt="google" width="357px" height="117px">
+	</a>
+	<br />
+	<a href="/oauth2/authorization/facebook"> 
+	<!-- facebook : provider // 규칙이라서 주소 적을 때 이 틀을 따라줘야 한다. 그러면 oauth가 낚아챈다. 그래서 provider로그인 화면을 받는다.-->
+	 <img
+		src="https://pngimage.net/wp-content/uploads/2018/06/login-with-facebook-button-png-transparent-1.png"
+		alt="facebook" width="357px" height="117px">
+	</a>
+</body>
+</html>

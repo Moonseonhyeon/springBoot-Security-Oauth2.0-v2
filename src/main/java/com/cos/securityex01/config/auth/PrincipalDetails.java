@@ -3,10 +3,12 @@ package com.cos.securityex01.config.auth;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.cos.securityex01.model.User;
 
@@ -16,9 +18,10 @@ import lombok.Data;
 
 // Authentication객체에 저장할 수 있는 유일한 타입입니다. 그리고 Authentication를 세션에 저장합니다.
 @Data
-public class PrincipalDetails implements UserDetails{
+public class PrincipalDetails implements UserDetails, OAuth2User{
 
 		private User user;	//이렇게 콤포지션
+		private Map<String, Object> attributes;
 		
 		public PrincipalDetails(User user) {
 			super();
@@ -56,12 +59,23 @@ public class PrincipalDetails implements UserDetails{
 	}
 	
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		//이부분 완성하는 거 숙제
+	public Collection<? extends GrantedAuthority> getAuthorities() {		
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		authorities.add( () -> (user.getRole()));
 		
 		return authorities; //권한뭐야?
+	}
+
+	//리소스서버로 부터 받는 회원정보들
+	
+	@Override
+	public Map<String, Object> getAttributes() { //OAuth2User타입으로 회원정보
+		return attributes;
+	}
+
+	@Override
+	public String getName() {
+		return "제공자 ID";
 	}
 	
 
