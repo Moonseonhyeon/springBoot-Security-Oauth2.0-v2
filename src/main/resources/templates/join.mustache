@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 회원가입 페이지</title>
+</head>
+<body>
+<!-- 시큐리티는 x-www-form-url-encoded 타입만 인식 -->
+<h1>회원가입 페이지</h1>
+<form action="/joinProc" method="post">
+	<input type="text" name="username" placeholder="username"/><br />
+	<input type="password" name="password" placeholder="password" /><br />
+	<input type="email" name="email" placeholder="email"/><br />
+	<button>회원가입</button>
+</form>
+</body>
+</html>
