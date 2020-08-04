@@ -68,7 +68,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 					.provider(oAuth2UserInfo.getProvider())
 					.providerId(oAuth2UserInfo.getProviderId())
 					.build();
-			userRepository.save(user); //
+			userRepository.save(user); //이미 jpa가 이미 기본적인 crud를 만들어놨다.
+			
 		}
 		
 		//일반적으로 로그인 할 때 유저 정보는  User
@@ -76,8 +77,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 		//2. DB에 이사람있나?
 		//3. 있으면  -> 그 사람의 유저정보를 Update하면 된다.
 		//4. 없으면  -> insert해야함.
-		//return PrincipalDetails()
-		
+		//return PrincipalDetails()		
 	
 		return new PrincipalDetails(user, oAuth2User.getAttributes()); // 이렇게 리턴하면 세션이 만들어진다.(일반적인 로그인
 	}

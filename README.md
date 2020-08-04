@@ -12,6 +12,8 @@
 
 ## Google, Facebook 로그인 완료
 
+![image](https://user-images.githubusercontent.com/55937799/89263676-a5852580-d66c-11ea-896c-d12fbff56509.png)
+
 ## application.yml 설정
 
 ```

@@ -26,7 +26,8 @@ public class OptionalControllerTest {
 		  
 		  	//1. get을 쓸 수있는 유일한 방법인데 쓸 필요는 없다.
 		/*
-		 * User user; if(userOptional.isPresent()) { user = userOptional.get(); } else {
+		 * User user; 
+		 * if(userOptional.isPresent()) { user = userOptional.get(); } else {
 		 * user = new User(); }
 		 */
 		 

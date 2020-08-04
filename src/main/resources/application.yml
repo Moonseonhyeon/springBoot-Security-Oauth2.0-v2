@@ -18,4 +18,11 @@ spring:  datasource:    driver-class-name: com.mysql.cj.jdbc.Driver
             client-id: 553872203531-n7rubmfpj5o9db57vmnqu9no51dhu7bi.apps.googleusercontent.com 
             client-secret: NK9K_DrVwjWSVAHDty7Y6Qu3
             scope:            - email
-            - profile               
+            - profile   
+          facebook:
+            client-id: 593429301564886
+            client-secret: 2c965a107f09356437e420daeae90bea
+            scope:
+            - email
+            - public_profile
+                 
