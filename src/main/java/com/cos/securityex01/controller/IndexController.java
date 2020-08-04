@@ -36,7 +36,7 @@ public class IndexController {
 
 	@GetMapping("/user")
 	public @ResponseBody String user(@AuthenticationPrincipal PrincipalDetails principal) { // 세션찾기 어노테이션
-		System.out.println(principal);
+		System.out.println("Principal : " + principal);
 		System.out.println(principal.getUser().getRole());
 		System.out.println(principal.getAuthorities()); //이 부분 완성해야 함.
 
@@ -55,8 +55,8 @@ public class IndexController {
 		return "어드민 페이지 입니다.";
 	}
 	
-	@PostAuthorize("hasRole('ROLE_MANAGER')")
-	@PreAuthorize("hasRole('ROLE_MANAGER')")
+	//@PostAuthorize("hasRole('ROLE_MANAGER')")
+	//@PreAuthorize("hasRole('ROLE_MANAGER')")
 	@Secured("ROLE_MANAGER")
 	@GetMapping("/manager")
 	public @ResponseBody String manager() {

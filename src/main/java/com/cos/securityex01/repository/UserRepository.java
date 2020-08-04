@@ -23,6 +23,12 @@ public interface UserRepository extends JpaRepository<User, Integer>{ //Wrapper 
 	//User find 마음대로
 	//Jpa Query Creation
 	
-	@Query(value = "select * from user where email = 1?", nativeQuery = true)
-	Optional<User> mFindemail(String email);
+	/*
+	 * @Query(value = "select * from user where email = ?1", nativeQuery = true)
+	 * Optional<User> mFindemail(String email);
+	 */
+	
+	//SELECT * FROM user WHERE provider=?1 and providerId=?2;
+	Optional<User> findByProviderAndProviderId(String provider, String providerId);	
+	
 }

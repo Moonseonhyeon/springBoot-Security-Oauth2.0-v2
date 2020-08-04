@@ -17,7 +17,7 @@ import lombok.Data;
 
 
 // Authentication객체에 저장할 수 있는 유일한 타입입니다. 그리고 Authentication를 세션에 저장합니다.
-@Data
+
 public class PrincipalDetails implements UserDetails, OAuth2User{
 
 		private User user;	//이렇게 콤포지션
@@ -27,6 +27,17 @@ public class PrincipalDetails implements UserDetails, OAuth2User{
 			super();
 			this.user = user;
 		}
+		
+		public User getUser() {
+			return user;
+		}
+
+		//OAuth2.0 로그인 사용
+		public PrincipalDetails(User user, Map<String, Object> attributes) {
+			this.user = user;
+			this.attributes = attributes;
+		}
+		
 
 	@Override
 	public String getPassword() {	
@@ -73,9 +84,10 @@ public class PrincipalDetails implements UserDetails, OAuth2User{
 		return attributes;
 	}
 
+	//User의 PrimaryKey
 	@Override
 	public String getName() {
-		return "제공자 ID";
+		return user.getId()+"";
 	}
 	
 
