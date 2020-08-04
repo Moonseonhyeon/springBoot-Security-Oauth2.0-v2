@@ -10,9 +10,9 @@
 
 ![image](https://user-images.githubusercontent.com/55937799/89255549-f8ef7780-d65c-11ea-8f05-0b32356bf67f.png)
 
-## Google, Facebook 로그인 완료
+## Google, Facebook, Naver 로그인 완료
 
-![image](https://user-images.githubusercontent.com/55937799/89263676-a5852580-d66c-11ea-896c-d12fbff56509.png)
+![image](https://user-images.githubusercontent.com/55937799/89282512-9ad78a00-d686-11ea-82ca-afe6e8f3d757.png)
 
 ## application.yml 설정
 
@@ -55,6 +55,33 @@ spring:
             scope:
               - email
               - profile
+
+          facebook:
+            client-id: 머시기
+            client-secret: 머시기
+            scope:
+              - email
+              - public_profile
+
+          # 네이버는 OAuth2.0 공식 지원대상이 아니라서 provider 설정이 필요하다.
+          # 요청주소도 다르고, 응답 데이터도 다르기 때문이다.
+          naver:
+            client-id: 머시기
+            client-secret: 머시기
+            scope:
+              - name
+              - email
+              - profile_image
+            client-name: Naver # 클라이언트 네임은 구글 페이스북도 대문자로 시작하더라.
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/naver
+
+        provider:
+          naver:
+            authorization-uri: https://nid.naver.com/oauth2.0/authorize
+            token-uri: https://nid.naver.com/oauth2.0/token
+            user-info-uri: https://openapi.naver.com/v1/nid/me
+            user-name-attribute: response # 회원정보를 json의 response 키값으로 리턴해줌.
 
 ```
 
