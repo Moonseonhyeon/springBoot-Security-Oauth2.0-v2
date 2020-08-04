@@ -1,6 +1,7 @@
 package com.cos.securityex01.config;
 
 import org.aspectj.weaver.BCException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -15,6 +16,9 @@ import com.cos.securityex01.config.oauth.PrincipalOauth2UserService;
 @EnableWebSecurity //시큐리티 필터 체인안에 항목들을 관리 시작
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true) //특정 주소 접근시 권한 및 인증을 미리 체크
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	private PrincipalOauth2UserService principalOauth2UserService;
 	
 	
 	@Bean //메서드를 IoC한다.
@@ -44,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.oauth2Login()
 			.loginPage("/login")
 			.userInfoEndpoint()
-			.userService(new PrincipalOauth2UserService());		
+			.userService(principalOauth2UserService);		
 		
 			;
 		

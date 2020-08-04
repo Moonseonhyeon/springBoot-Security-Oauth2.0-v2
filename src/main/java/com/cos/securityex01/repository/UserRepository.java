@@ -1,6 +1,9 @@
 package com.cos.securityex01.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.cos.securityex01.model.User;
 
@@ -19,4 +22,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{ //Wrapper 
 	//@Query(value="select*from user", nativeQuery=true)
 	//User find 마음대로
 	//Jpa Query Creation
+	
+	@Query(value = "select * from user where email = 1?", nativeQuery = true)
+	Optional<User> mFindemail(String email);
 }
